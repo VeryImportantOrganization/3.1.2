@@ -48,7 +48,7 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
 
     @Override
     public List<User> usersList() {
-        return usersDao.usersList();
+        return usersDao.getAllUsers();
     }
 
     @Override
@@ -68,6 +68,6 @@ public class UsersServiceImpl implements UsersService, UserDetailsService {
     }
 
     private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-        return roles.stream().map(r -> new SimpleGrantedAuthority(r.getRoleName())).collect(Collectors.toList());
+        return roles.stream().map(role -> new SimpleGrantedAuthority(role.getRoleName())).collect(Collectors.toList());
     }
 }
