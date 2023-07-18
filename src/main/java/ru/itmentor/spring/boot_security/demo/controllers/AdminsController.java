@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import ru.itmentor.spring.boot_security.demo.dao.RolesDao;
 import ru.itmentor.spring.boot_security.demo.models.User;
 import ru.itmentor.spring.boot_security.demo.services.UsersServiceImpl;
 
@@ -41,7 +40,7 @@ public class AdminsController {
         return "redirect:/admin";
     }
 
-    @GetMapping("/{id}/edit")
+    @GetMapping("/edit/{id}")
     public String editionUser(Model model, @PathVariable("id") long id) {
         model.addAttribute("user", usersService.getUserById(id));
         return "edit";
@@ -53,7 +52,7 @@ public class AdminsController {
         return "redirect:/admin";
     }
 
-    @DeleteMapping("/{id}/delete")
+    @DeleteMapping("/delete/{id}")
     public String removeUser(@PathVariable("id") long id) {
         usersService.removeUser(id);
         return "redirect:/admin";

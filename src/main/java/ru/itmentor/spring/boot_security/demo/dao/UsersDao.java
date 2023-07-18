@@ -12,6 +12,6 @@ public interface UsersDao {
 
     void removeUser(long id);
     User getUserById(long id);
-    List<User> usersList();
+    List<User> getAllUsers();
     User getUserByName(String name);
 }

@@ -21,17 +21,7 @@ public class User implements UserDetails {
     @Column
     private String passw;
 
-    @Transient
-    transient private String confirmpassword;
-
-    @Column
-    @ManyToMany()
-    @JoinTable(name = "users_roles",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles = new HashSet<>();
-
-    @Column
+    @Column(unique = true)
     private String name;
 
     @Column
@@ -40,6 +30,12 @@ public class User implements UserDetails {
     @Column
     private Date dob;
 
+    @Column
+    @ManyToMany()
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private Collection<Role> roles = new HashSet<>();
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -48,7 +44,7 @@ public class User implements UserDetails {
 
     @Override
     public String getPassword() {
-        return confirmpassword;
+        return passw;
     }
 
     @Override
